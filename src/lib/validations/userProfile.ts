@@ -16,7 +16,7 @@ export const userProfileSchema = z.object({
   phone: z
     .string()
     .min(1, 'Phone number is required')
-    .regex(/^(\d{9}|\d{3}-\d{3}-\d{3})$/, 'Please enter a valid 9-digit phone number (with or without dashes)'),
+    .regex(/^\d{3}([ -]?)\d{3}\1\d{3}$/, 'Please enter a valid 9-digit phone number (digits only, with dashes or spaces)'),
   birthday: z
     .string()
     .min(1, 'Birthday is required')
