@@ -36,15 +36,18 @@ export const useProfileFormLogic = () => {
   const location = useLocation();
   const isEditMode = location.state?.isEditMode === true;
 
-  const emptyValues = useMemo<UserProfile>(() => ({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    birthday: "",
-    about: "",
-    avatar: undefined,
-  }), []);
+  const emptyValues = useMemo<UserProfile>(
+    () => ({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      birthday: "",
+      about: "",
+      avatar: undefined,
+    }),
+    []
+  );
 
   const handleResetForm = useCallback(() => {
     reset(emptyValues);

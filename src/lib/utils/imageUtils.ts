@@ -26,7 +26,7 @@ export const compressImage = async (file: File): Promise<string> => {
 
 export const sanitizeFileName = (fileName: string): string => {
   return fileName
-    .replace(/[^a-zA-Z0-9.-]/g, '_')
-    .replace(/_{2,}/g, '_')
+    .replace(/[^a-zA-Z0-9.-]/g, "_")
+    .replace(/_{2,}/g, "_")
     .slice(0, 255);
 };

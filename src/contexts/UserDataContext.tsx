@@ -92,7 +92,8 @@ export const UserDataProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const draft = loadFormDraft();
     if (draft) {
-      const { avatar, firstName, lastName, email, phone, birthday, about } = draft;
+      const { avatar, firstName, lastName, email, phone, birthday, about } =
+        draft;
       Object.entries(draft).forEach(([key, value]) => {
         if (key !== "avatar" && value !== undefined) {
           form.setValue(key as keyof UserProfile, value);

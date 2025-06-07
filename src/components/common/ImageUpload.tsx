@@ -1,9 +1,12 @@
-import { useCallback, useState } from 'react';
-import { useDropzone, type FileRejection } from 'react-dropzone';
-import { Upload } from 'lucide-react';
-import { compressImage, sanitizeFileName } from '../../lib/utils/imageUtils';
-import '../../styles/ImageUpload.css';
-import { MAX_IMAGE_FILE_SIZE, ALLOWED_IMAGE_TYPES } from '../../lib/consts/image';
+import { useCallback, useState } from "react";
+import { useDropzone, type FileRejection } from "react-dropzone";
+import { Upload } from "lucide-react";
+import { compressImage, sanitizeFileName } from "../../lib/utils/imageUtils";
+import "../../styles/ImageUpload.css";
+import {
+  MAX_IMAGE_FILE_SIZE,
+  ALLOWED_IMAGE_TYPES,
+} from "../../lib/consts/image";
 
 interface ImageUploadProps {
   onImageChange: (image: string | null) => void;
@@ -11,7 +14,11 @@ interface ImageUploadProps {
   error?: string;
 }
 
-const ImageUpload = ({ onImageChange, currentImage, error }: ImageUploadProps) => {
+const ImageUpload = ({
+  onImageChange,
+  currentImage,
+  error,
+}: ImageUploadProps) => {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
@@ -31,8 +38,8 @@ const ImageUpload = ({ onImageChange, currentImage, error }: ImageUploadProps) =
         const compressedImage = await compressImage(safeFile);
         onImageChange(compressedImage);
       } catch (error) {
-        console.error('Error processing image:', error);
-        setUploadError('Failed to process image. Please try again.');
+        console.error("Error processing image:", error);
+        setUploadError("Failed to process image. Please try again.");
       } finally {
         setUploading(false);
       }
@@ -40,19 +47,16 @@ const ImageUpload = ({ onImageChange, currentImage, error }: ImageUploadProps) =
     [onImageChange]
   );
 
-  const onDropRejected = useCallback(
-    (fileRejections: FileRejection[]) => {
-      if (fileRejections && fileRejections.length > 0) {
-        const rejection = fileRejections[0];
-        if (rejection.errors && rejection.errors.length > 0) {
-          setUploadError(rejection.errors[0].message);
-        } else {
-          setUploadError('File not accepted. Please upload a valid image.');
-        }
+  const onDropRejected = useCallback((fileRejections: FileRejection[]) => {
+    if (fileRejections && fileRejections.length > 0) {
+      const rejection = fileRejections[0];
+      if (rejection.errors && rejection.errors.length > 0) {
+        setUploadError(rejection.errors[0].message);
+      } else {
+        setUploadError("File not accepted. Please upload a valid image.");
       }
-    },
-    []
-  );
+    }
+  }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -93,20 +97,18 @@ const ImageUpload = ({ onImageChange, currentImage, error }: ImageUploadProps) =
     <div className="image-upload-container">
       <div
         {...getRootProps()}
-        className={`image-upload-dropzone ${isDragActive ? 'drag-active' : ''}`}
+        className={`image-upload-dropzone ${isDragActive ? "drag-active" : ""}`}
       >
         <input {...getInputProps()} />
         <Upload className="image-upload-icon" />
         <p className="image-upload-text">
           {uploading
-            ? 'Processing...'
+            ? "Processing..."
             : isDragActive
-            ? 'Drop the image here'
-            : 'Click or drag to upload'}
+            ? "Drop the image here"
+            : "Click or drag to upload"}
         </p>
-        <p className="image-upload-subtext">
-          PNG, JPG, WebP up to 5MB
-        </p>
+        <p className="image-upload-subtext">PNG, JPG, WebP up to 5MB</p>
       </div>
       {(error || uploadError) && (
         <p className="upload-error">{error || uploadError}</p>

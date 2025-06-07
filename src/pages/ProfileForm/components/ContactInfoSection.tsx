@@ -31,18 +31,18 @@ const ContactInfoSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="phone">Phone Number *</Label>
-  <Input
-    id="phone"
-    type="tel"
-    {...register("phone")}
-    placeholder="Enter your phone number"
-    aria-required="true"
-    aria-invalid={!!errors.phone}
-    aria-describedby={errors.phone ? "phone-error" : "phone-help"}
-  />
-  <p id="phone-help" className="text-xs text-gray-500">
-    Formats: 111222333 · 111-222-333 · 111 222 333
-  </p>
+          <Input
+            id="phone"
+            type="tel"
+            {...register("phone")}
+            placeholder="Enter your phone number"
+            aria-required="true"
+            aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? "phone-error" : "phone-help"}
+          />
+          <p id="phone-help" className="text-xs text-gray-500">
+            Formats: 111222333 · 111-222-333 · 111 222 333
+          </p>
           {errors.phone && (
             <p id="phone-error" className="text-sm text-red-600" role="alert">
               {errors.phone.message}
@@ -60,7 +60,11 @@ const ContactInfoSection = () => {
             aria-describedby={errors.birthday ? "birthday-error" : undefined}
           />
           {errors.birthday && (
-            <p id="birthday-error" className="text-sm text-red-600" role="alert">
+            <p
+              id="birthday-error"
+              className="text-sm text-red-600"
+              role="alert"
+            >
               {errors.birthday.message}
             </p>
           )}
