@@ -1,0 +1,114 @@
+// ========================================
+// Button Component
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.btn {
+  @include button-base;
+  
+  // Primary button (default)
+  &,
+  &--primary {
+    background-color: color(blue-600);
+    color: color(white);
+    border: 1px solid color(blue-600);
+    
+    &:hover:not(:disabled) {
+      background-color: color(blue-700);
+      border-color: color(blue-700);
+    }
+    
+    &:focus {
+      @include focus-ring;
+    }
+  }
+  
+  // Secondary button
+  &--secondary {
+    background-color: color(white);
+    color: color(gray-700);
+    border: 1px solid color(gray-300);
+    
+    &:hover:not(:disabled) {
+      background-color: color(gray-50);
+      border-color: color(gray-400);
+    }
+  }
+  
+  // Tertiary button
+  &--tertiary {
+    background-color: transparent;
+    color: color(blue-600);
+    border: 1px solid transparent;
+    
+    &:hover:not(:disabled) {
+      background-color: color(blue-50);
+      color: color(blue-700);
+    }
+  }
+  
+  // Danger button
+  &--danger {
+    background-color: color(red-600);
+    color: color(white);
+    border: 1px solid color(red-600);
+    
+    &:hover:not(:disabled) {
+      background-color: color(red-700);
+      border-color: color(red-700);
+    }
+  }
+  
+  // Ghost button
+  &--ghost {
+    background-color: transparent;
+    color: color(gray-700);
+    border: 1px solid transparent;
+    
+    &:hover:not(:disabled) {
+      background-color: color(gray-100);
+    }
+  }
+  
+  // Size variations
+  &--sm {
+    padding: spacing(2) spacing(3);
+    font-size: font-size(xs);
+  }
+  
+  &--md {
+    padding: spacing(3) spacing(4);
+    font-size: font-size(sm);
+  }
+  
+  &--lg {
+    padding: spacing(4) spacing(6);
+    font-size: font-size(base);
+  }
+  
+  &--xl {
+    padding: spacing(5) spacing(8);
+    font-size: font-size(lg);
+  }
+  
+  // Full width
+  &--full-width {
+    width: 100%;
+  }
+  
+  // Icon spacing
+  &__icon {
+    width: spacing(4);
+    height: spacing(4);
+    
+    &--left {
+      margin-right: spacing(2);
+    }
+    
+    &--right {
+      margin-left: spacing(2);
+    }
+  }
+}

@@ -6,7 +6,8 @@
 - **Build Tool**: Vite
 - **Routing**: React Router DOM
 - **Form Management**: React Hook Form + Zod validation
-- **UI Components**: shadcn/ui + Tailwind CSS
+- **UI Components**: IBM Carbon Design System
+- **Styling**: SASS/SCSS
 - **Image Processing**: browser-image-compression
 - **File Upload**: react-dropzone
 - **State Management**: React Context + Custom Hooks
@@ -32,11 +33,6 @@ i assumed users want their form data saved automatically as they type. So i adde
 **React Hook Form + Zod**
 These work really well together. React Hook Form doesn't re-render the whole form when one field changes, which makes it fast. Zod gives you type safety and handles validation errors nicely.
 
-**Tailwind CSS**
-Fast to write and the file size stays small because it only includes what you use. The responsive classes make mobile-first design easy.
-
-Alternatively, styled-components or CSS modules would work too, but Tailwind is faster for this kind of project.
-
 **Context API**
 Good for sharing form state between components without passing props everywhere. The form data needs to be available in multiple places.
 
@@ -47,8 +43,8 @@ Redux as an alternative would be overkill for this. useState in the main compone
 **Dependency injection pattern**
 i made the form submission hook accept dependencies instead of importing contexts directly. This makes it much easier to test and reuse.
 
-**Custom CSS for image upload**
-The task required at least one component without frameworks. i chose the image upload because it needed custom drag-and-drop styling anyway.
+**Custom SASS for image upload**
+The task required at least one component without frameworks. i chose the image upload because it needed custom drag-and-drop styling anyway. SASS makes it easier to organize the styles with nesting and variables.
 
 **Error boundaries**
 Added these to catch React errors gracefully instead of showing a white screen.
@@ -64,6 +60,7 @@ Waits 1 second after the user stops typing before saving. Prevents too many stor
 - Just useState: would need lots of prop passing
 
 **Styling approaches**
+- Tailwind CSS: utility-first but can lead to cluttered JSX
 - styled-components: good but adds runtime overhead
 - CSS modules: would work but more setup
 - Regular CSS: harder to maintain for responsive design

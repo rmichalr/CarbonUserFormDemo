@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { CardContent } from "../../components/ui/card";
+import { CardContent } from "../../components/carbon-ui";
 import { Edit } from "lucide-react";
 import { ProfileHeader } from "./components/ProfileHeader";
 import { ProfileContactInfo } from "./components/ProfileContactInfo";
 import { ProfileAbout } from "./components/ProfileAbout";
 import { useUserDataContext } from "../../contexts/UserDataContext";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../components/carbon-ui";
 
 export const ProfileViewContent = () => {
   const navigate = useNavigate();
@@ -18,17 +18,17 @@ export const ProfileViewContent = () => {
   };
 
   return (
-    <CardContent className="space-y-6">
+    <CardContent className="profile-view__content">
       <ProfileHeader profileData={profileData} />
       <ProfileContactInfo profileData={profileData} />
       <ProfileAbout profileData={profileData} />
-      <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t">
+      <div className="profile-view__actions">
         <Button
           onClick={handleEditProfile}
-          className="flex-1 shadow-md cursor-pointer"
+          className="profile-view__edit-button btn btn--primary"
           variant="primary"
         >
-          <Edit className="w-4 h-4 mr-2" />
+          <Edit className="btn__icon btn__icon--left" />
           Edit Profile
         </Button>
       </div>

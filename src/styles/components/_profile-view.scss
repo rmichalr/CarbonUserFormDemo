@@ -1,0 +1,166 @@
+// ========================================
+// Profile View Component
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.profile-view {
+  &__content {
+    @include flex(column);
+    gap: spacing(6);
+  }
+
+  &__header {
+    @include flex(column, center, center);
+    gap: spacing(4);
+    text-align: center;
+    
+    @include breakpoint('sm') {
+      @include flex(row, flex-start, flex-start);
+      text-align: left;
+      gap: spacing(6);
+    }
+  }
+
+  &__avatar-section {
+    @include flex(column, center, center);
+    gap: spacing(3);
+    
+    @include breakpoint('sm') {
+      flex-shrink: 0;
+    }
+  }
+
+  &__info-section {
+    @include flex(column);
+    gap: spacing(2);
+    flex: 1;
+  }
+
+  &__name {
+    font-size: font-size(2xl);
+    font-weight: map-get($font-weights, bold);
+    color: color(gray-900);
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: color(gray-600);
+    font-size: font-size(base);
+    margin: 0;
+  }
+
+  &__contact-info {
+    @include grid(1, spacing(4));
+    padding: spacing(6) 0;
+    border-top: 1px solid color(gray-200);
+    border-bottom: 1px solid color(gray-200);
+    
+    @include breakpoint('md') {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__field {
+    @include flex(column);
+    gap: spacing(1);
+  }
+
+  &__field-label {
+    font-size: font-size(sm);
+    font-weight: map-get($font-weights, medium);
+    color: color(gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__field-value {
+    font-size: font-size(base);
+    color: color(gray-900);
+    word-wrap: break-word;
+    
+    &--empty {
+      color: color(gray-500);
+      font-style: italic;
+    }
+  }
+
+  &__about {
+    &-section {
+      @include flex(column);
+      gap: spacing(3);
+    }
+
+    &-label {
+      font-size: font-size(lg);
+      font-weight: map-get($font-weights, semibold);
+      color: color(gray-900);
+    }
+
+    &-content {
+      font-size: font-size(base);
+      line-height: map-get($line-heights, relaxed);
+      color: color(gray-700);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      
+      &--empty {
+        color: color(gray-500);
+        font-style: italic;
+      }
+    }
+  }
+
+  &__actions {
+    @include flex(column, stretch, flex-start);
+    gap: spacing(3);
+    padding-top: spacing(6);
+    border-top: 1px solid color(gray-200);
+    
+    @include breakpoint('sm') {
+      @include flex(row, center, flex-start);
+    }
+  }
+
+  &__edit-button {
+    @include flex(row, center, center);
+    gap: spacing(2);
+    flex: 1;
+    @include card-shadow(md);
+    cursor: pointer;
+    border-radius: map-get($border-radius, sm);
+  }
+}
+
+// No profile data component
+.no-profile {
+  @include flex(column, center, center);
+  gap: spacing(6);
+  padding: spacing(12) spacing(6);
+  text-align: center;
+  
+  &__icon {
+    width: spacing(16);
+    height: spacing(16);
+    color: color(gray-300);
+  }
+  
+  &__title {
+    font-size: font-size(xl);
+    font-weight: map-get($font-weights, semibold);
+    color: color(gray-900);
+    margin: 0;
+  }
+  
+  &__description {
+    color: color(gray-600);
+    font-size: font-size(base);
+    max-width: 400px;
+    line-height: map-get($line-heights, relaxed);
+  }
+  
+  &__action {
+    margin-top: spacing(2);
+  }
+}

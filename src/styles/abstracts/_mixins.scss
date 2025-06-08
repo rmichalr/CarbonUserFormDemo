@@ -1,0 +1,199 @@
+// ========================================
+// Mixins
+// ========================================
+
+@use 'variables' as *;
+
+// Color function
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+// Spacing function
+@function spacing($key) {
+  @return map-get($spacing, $key);
+}
+
+// Font size function
+@function font-size($key) {
+  @return map-get($font-sizes, $key);
+}
+
+// Media query mixin
+@mixin breakpoint($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (min-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @warn 'Unknown breakpoint: #{$size}';
+  }
+}
+
+// Flexbox utilities
+@mixin flex($direction: row, $align: stretch, $justify: flex-start, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-center {
+  @include flex(row, center, center);
+}
+
+@mixin flex-between {
+  @include flex(row, center, space-between);
+}
+
+// Grid utilities
+@mixin grid($columns: 1, $gap: spacing(4)) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  gap: $gap;
+}
+
+// Button reset
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Visually hidden (for accessibility)
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Focus styles
+@mixin focus-ring($offset: 2px) {
+  outline: 2px solid color(blue-600);
+  outline-offset: $offset;
+}
+
+// Card shadow
+@mixin card-shadow($level: 'md') {
+  @if map-has-key($shadows, $level) {
+    box-shadow: map-get($shadows, $level);
+  }
+}
+
+// Transition
+@mixin transition($property: 'colors') {
+  @if map-has-key($transitions, $property) {
+    transition: map-get($transitions, $property);
+  } @else {
+    transition: $property;
+  }
+}
+
+// Container
+@mixin container($max-width: '7xl') {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: spacing(4);
+  padding-right: spacing(4);
+  
+  @if map-has-key($max-widths, $max-width) {
+    max-width: map-get($max-widths, $max-width);
+  }
+  
+  @include breakpoint('sm') {
+    padding-left: spacing(6);
+    padding-right: spacing(6);
+  }
+  
+  @include breakpoint('lg') {
+    padding-left: spacing(8);
+    padding-right: spacing(8);
+  }
+}
+
+// Avatar circle
+@mixin avatar-circle($size: spacing(8)) {
+  width: $size;
+  height: $size;
+  border-radius: map-get($border-radius, full);
+  overflow: hidden;
+  @include flex-center;
+}
+
+// Form field
+@mixin form-field {
+  width: 100%;
+  border-radius: map-get($border-radius, md);
+  font-size: font-size(sm);
+  @include transition(colors);
+  
+  &:focus {
+    @include focus-ring;
+    border-color: color(blue-600);
+  }
+  
+  &::placeholder {
+    color: color(gray-500);
+  }
+  
+  &:disabled {
+    background-color: color(gray-100);
+    cursor: not-allowed;
+  }
+}
+
+// Button base
+@mixin button-base {
+  @include button-reset;
+  @include flex(row, center, center);
+  gap: spacing(2);
+  padding: spacing(3) spacing(4);
+  font-size: font-size(sm);
+  font-weight: map-get($font-weights, medium);
+  border-radius: map-get($border-radius, md);
+  @include transition(colors);
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Scrollbar styling
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: color(gray-100);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: color(gray-300);
+    border-radius: map-get($border-radius, default);
+    
+    &:hover {
+      background: color(gray-500);
+    }
+  }
+}

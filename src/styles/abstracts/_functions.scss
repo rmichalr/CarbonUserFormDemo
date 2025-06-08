@@ -1,0 +1,57 @@
+// ========================================
+// Functions
+// ========================================
+
+@use 'variables' as *;
+
+// Get color from map
+@function get-color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  } @else {
+    @warn 'Unknown color: #{$key}';
+    @return null;
+  }
+}
+
+// Get spacing from map
+@function get-spacing($key) {
+  @if map-has-key($spacing, $key) {
+    @return map-get($spacing, $key);
+  } @else {
+    @warn 'Unknown spacing: #{$key}';
+    @return null;
+  }
+}
+
+// Strip unit from value
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// Convert px to rem
+@function px-to-rem($px, $base-font-size: 16px) {
+  @return (strip-unit($px) / strip-unit($base-font-size)) * 1rem;
+}
+
+// Convert rem to px
+@function rem-to-px($rem, $base-font-size: 16px) {
+  @return (strip-unit($rem) * strip-unit($base-font-size)) * 1px;
+}
+
+// Calculate fluid typography
+@function fluid-size($min-size, $max-size, $min-screen: 320px, $max-screen: 1200px) {
+  $slope: ($max-size - $min-size) / ($max-screen - $min-screen);
+  $intersection: -$min-screen * $slope + $min-size;
+  @return clamp(#{$min-size}, #{$intersection} + #{$slope * 100vw}, #{$max-size});
+}
+
+// Get z-index value
+@function z-index($key) {
+  @if map-has-key($z-index, $key) {
+    @return map-get($z-index, $key);
+  } @else {
+    @warn 'Unknown z-index: #{$key}';
+    @return auto;
+  }
+}

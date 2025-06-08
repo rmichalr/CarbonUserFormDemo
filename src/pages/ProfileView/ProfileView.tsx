@@ -3,7 +3,7 @@ import {
   Card,
   CardHeader,
   CardTitle,
-} from "../../components/ui/card";
+} from "../../components/carbon-ui";
 import { NoProfileData } from "./components/NoProfileData";
 import { ProfileViewContent } from "./ProfileViewContent";
 
@@ -15,7 +15,7 @@ const ProfileView = () => {
   }
 
   return (
-    <Card className="max-w-2xl mx-auto shadow-2xl border-none">
+    <Card className="card--max-width-2xl card--borderless">
       <CardHeader>
         <CardTitle>Your Profile</CardTitle>
       </CardHeader>

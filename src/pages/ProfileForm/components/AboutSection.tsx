@@ -1,5 +1,5 @@
-import { Textarea } from "../../../components/ui/textarea";
-import { Label } from "../../../components/ui/label";
+import { Textarea } from "../../../components/carbon-ui";
+import { Label } from "../../../components/carbon-ui";
 import { useUserDataContext } from "../../../contexts/UserDataContext";
 
 const AboutSection = () => {
@@ -10,19 +10,19 @@ const AboutSection = () => {
   } = form;
 
   return (
-    <div className="space-y-2">
-      <Label htmlFor="about">About You *</Label>
+    <div className="form-section__about">
+      <Label htmlFor="about" className="field__label label--required">About You</Label>
       <Textarea
         id="about"
         {...register("about")}
         placeholder="Tell us about yourself... (minimum 10 characters)"
-        className="min-h-[100px]"
-        aria-required="true"
+        className="field__input textarea"
+        aria-required={true}
         aria-invalid={!!errors.about}
         aria-describedby={errors.about ? "about-error" : undefined}
       />
       {errors.about && (
-        <p id="about-error" className="text-sm text-red-600" role="alert">
+        <p id="about-error" className="field__error" role="alert">
           {errors.about.message}
         </p>
       )}

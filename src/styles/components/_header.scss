@@ -1,0 +1,30 @@
+// ========================================
+// Header Component
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.header {
+  background-color: color(white);
+  border-bottom: 1px solid color(gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  @include card-shadow(md);
+
+  &__container {
+    @include flex-between;
+    height: spacing(16); // 4rem
+    margin-inline: auto;
+    max-width: 80rem;
+  }
+
+  &__logo-section {
+    @include flex(row, center);
+  }
+
+  &__nav-section {
+    @include flex(row, center);
+  }
+}

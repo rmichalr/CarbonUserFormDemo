@@ -1,0 +1,164 @@
+// ========================================
+// Form Components
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Form container
+.form {
+  &__group {
+    margin-bottom: spacing(4);
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__row {
+    @include grid(1, spacing(4));
+    
+    @include breakpoint('md') {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  &__actions {
+    @include flex(row, center, flex-start);
+    gap: spacing(3);
+    margin-top: spacing(6);
+    
+    @include breakpoint('sm') {
+      justify-content: flex-start;
+    }
+  }
+}
+
+// Label
+.label {
+  display: block;
+  font-size: font-size(sm);
+  font-weight: map-get($font-weights, medium);
+  color: color(gray-700);
+  margin-bottom: spacing(2);
+  
+  &--required::after {
+    content: ' *';
+    color: color(red-600);
+  }
+}
+
+// Input field
+.input {
+  @include form-field;
+  
+  &--error {
+    border-color: color(red-600);
+    
+    &:focus {
+      border-color: color(red-600);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+  }
+  
+  &--success {
+    border-color: color(green-600);
+    
+    &:focus {
+      border-color: color(green-600);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    }
+  }
+}
+
+// Textarea
+.textarea {
+  @include form-field;
+  min-height: 100px;
+  resize: vertical;
+  
+  &--error {
+    border-color: color(red-600);
+    
+    &:focus {
+      border-color: color(red-600);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+  }
+}
+
+// Field wrapper
+.field {
+  &__wrapper {
+    width: 100%;
+  }
+  
+  &__label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__error {
+    color: color(red-600);
+    font-size: font-size(sm);
+    margin-top: spacing(1);
+    display: block;
+  }
+  
+  &__help {
+    color: color(gray-500);
+    font-size: font-size(sm);
+    margin-top: spacing(1);
+  }
+}
+
+// File input styling
+.file-input {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  &__button {
+    @include button-base;
+    background-color: color(white);
+    color: color(gray-700);
+    border: 1px solid color(gray-300);
+    
+    &:hover {
+      background-color: color(gray-50);
+    }
+  }
+  
+  &__text {
+    margin-left: spacing(2);
+    color: color(gray-600);
+    font-size: font-size(sm);
+  }
+}
+
+// Checkbox and radio
+.checkbox,
+.radio {
+  @include flex(row, center, flex-start);
+  gap: spacing(2);
+  
+  &__input {
+    width: spacing(4);
+    height: spacing(4);
+    cursor: pointer;
+  }
+  
+  &__label {
+    cursor: pointer;
+    font-size: font-size(sm);
+    color: color(gray-700);
+  }
+}

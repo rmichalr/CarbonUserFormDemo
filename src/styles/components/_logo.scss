@@ -1,0 +1,43 @@
+// ========================================
+// Logo Component
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.logo {
+  @include flex(row, center);
+
+  &__link {
+    @include flex(row, center);
+    gap: spacing(2);
+    font-size: font-size(xl);
+    font-weight: map-get($font-weights, bold);
+    color: color(gray-900);
+    text-decoration: none;
+    @include transition(colors);
+
+    &:hover {
+      color: color(blue-600);
+    }
+  }
+
+  &__icon {
+    width: spacing(8);
+    height: spacing(8);
+    background-color: color(blue-600);
+    border-radius: map-get($border-radius, lg);
+    @include flex-center;
+    @include transition(colors);
+
+    &:hover {
+      background-color: color(blue-700);
+    }
+  }
+
+  &__icon-svg {
+    width: spacing(5);
+    height: spacing(5);
+    color: color(white);
+  }
+}

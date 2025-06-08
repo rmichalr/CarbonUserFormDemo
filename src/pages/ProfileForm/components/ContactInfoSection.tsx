@@ -1,5 +1,5 @@
-import { Input } from "../../../components/ui/input";
-import { Label } from "../../../components/ui/label";
+import { Input } from "../../../components/carbon-ui";
+import { Label } from "../../../components/carbon-ui";
 import { useUserDataContext } from "../../../contexts/UserDataContext";
 
 const ContactInfoSection = () => {
@@ -10,67 +10,68 @@ const ContactInfoSection = () => {
   } = form;
 
   return (
-    <>
-      <div className="space-y-2">
-        <Label htmlFor="email">Email Address *</Label>
+    <div className="form-section__contact-info">
+      <div className="field__wrapper">
+        <Label htmlFor="email" className="field__label label--required">Email Address</Label>
         <Input
           id="email"
           type="email"
           {...register("email")}
           placeholder="Enter your email address"
-          aria-required="true"
+          className="field__input input"
+          aria-required={true}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
         />
         {errors.email && (
-          <p id="email-error" className="text-sm text-red-600" role="alert">
+          <p id="email-error" className="field__error" role="alert">
             {errors.email.message}
           </p>
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="phone">Phone Number *</Label>
-          <Input
-            id="phone"
-            type="tel"
-            {...register("phone")}
-            placeholder="Enter your phone number"
-            aria-required="true"
-            aria-invalid={!!errors.phone}
-            aria-describedby={errors.phone ? "phone-error" : "phone-help"}
-          />
-          <p id="phone-help" className="text-xs text-gray-500">
-            Formats: 111222333 · 111-222-333 · 111 222 333
+      <div className="field__wrapper">
+        <Label htmlFor="phone" className="field__label label--required">Phone Number</Label>
+        <Input
+          id="phone"
+          type="tel"
+          {...register("phone")}
+          placeholder="Enter your phone number"
+          className="field__input input"
+          aria-required={true}
+          aria-invalid={!!errors.phone}
+          aria-describedby={errors.phone ? "phone-error" : "phone-help"}
+        />
+        <p id="phone-help" className="field__help">
+          Formats: 111222333 · 111-222-333 · 111 222 333
+        </p>
+        {errors.phone && (
+          <p id="phone-error" className="field__error" role="alert">
+            {errors.phone.message}
           </p>
-          {errors.phone && (
-            <p id="phone-error" className="text-sm text-red-600" role="alert">
-              {errors.phone.message}
-            </p>
-          )}
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="birthday">Birthday *</Label>
-          <Input
-            id="birthday"
-            type="date"
-            {...register("birthday")}
-            aria-required="true"
-            aria-invalid={!!errors.birthday}
-            aria-describedby={errors.birthday ? "birthday-error" : undefined}
-          />
-          {errors.birthday && (
-            <p
-              id="birthday-error"
-              className="text-sm text-red-600"
-              role="alert"
-            >
-              {errors.birthday.message}
-            </p>
-          )}
-        </div>
+        )}
       </div>
-    </>
+      <div className="field__wrapper">
+        <Label htmlFor="birthday" className="field__label label--required">Birthday</Label>
+        <Input
+          id="birthday"
+          type="date"
+          {...register("birthday")}
+          className="field__input input"
+          aria-required={true}
+          aria-invalid={!!errors.birthday}
+          aria-describedby={errors.birthday ? "birthday-error" : undefined}
+        />
+        {errors.birthday && (
+          <p
+            id="birthday-error"
+            className="field__error"
+            role="alert"
+          >
+            {errors.birthday.message}
+          </p>
+        )}
+      </div>
+    </div>
   );
 };
 

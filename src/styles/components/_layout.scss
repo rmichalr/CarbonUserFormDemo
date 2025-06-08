@@ -1,0 +1,21 @@
+// ========================================
+// Layout Component
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.layout {
+  min-height: 100vh;
+  @include flex(column);
+  background-color: color(gray-50);
+
+  &__main {
+    flex: 1;
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-top: spacing(8);
+    padding-bottom: spacing(8);
+    width: 100%;
+  }
+}

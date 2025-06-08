@@ -1,9 +1,9 @@
-import { CardContent } from "../../components/ui/card";
+import { CardContent } from "../../components/carbon-ui";
 import AvatarUploadSection from "./components/AvatarUploadSection";
 import NameFieldsSection from "./components/NameFieldsSection";
 import ContactInfoSection from "./components/ContactInfoSection";
 import AboutSection from "./components/AboutSection";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../components/carbon-ui";
 import { useProfileFormLogic } from "../../hooks/useProfileFormLogic";
 
 const ProfileFormContent = () => {
@@ -22,9 +22,9 @@ const ProfileFormContent = () => {
 
   return (
     <CardContent>
-      <form onSubmit={handleSubmit(submitForm)} className="space-y-6">
+      <form onSubmit={handleSubmit(submitForm)} className="profile-form__form">
         {submitError && (
-          <div className="p-4 text-sm text-red-800 bg-red-100 border border-red-200 rounded-md">
+          <div className="profile-form__submit-error">
             {submitError}
           </div>
         )}
@@ -43,28 +43,28 @@ const ProfileFormContent = () => {
         <ContactInfoSection />
         <AboutSection />
 
-        <div className="flex gap-4">
+        <div className="profile-form__actions">
           <Button
             type="submit"
-            className="flex-1 rounded-lg shadow-lg cursor-pointer"
             disabled={isSubmitting}
             variant="primary"
+            className="btn btn--primary"
           >
             {submitLabel}
           </Button>
           <Button
             type="button"
-            className="flex-1 cursor-pointer"
             onClick={handleResetForm}
             disabled={isSubmitting}
             variant="danger"
+            className="btn btn--danger"
           >
             Reset form
           </Button>
         </div>
 
         {process.env.NODE_ENV === "development" && (
-          <div className="text-xs text-gray-500 p-2 bg-gray-50 rounded">
+          <div className="profile-form__debug-info">
             Form valid: {isValid ? "Yes" : "No"} | Has errors:{" "}
             {Object.keys(errors).length > 0 ? "Yes" : "No"}
             {Object.keys(errors).length > 0 && (

@@ -1,8 +1,8 @@
-import { Card, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "../../components/carbon-ui";
 import ProfileFormContent from "./ProfileFormContent";
 
 const ProfileForm = () => (
-  <Card className="max-w-2xl mx-auto shadow-2xl border-none">
+  <Card className="card--max-width-2xl card--borderless">
     <CardHeader>
       <CardTitle>Create Your Profile</CardTitle>
       <CardDescription>

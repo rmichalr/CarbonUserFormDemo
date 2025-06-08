@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom";
-import { Card, CardContent } from "../../../components/ui/card";
-import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/carbon-ui";
+import { Button } from "../../../components/carbon-ui";
 
 export const NoProfileData = () => (
-  <Card className="max-w-2xl mx-auto text-center shadow-2xl border-none">
-    <CardContent className="pt-6">
-      <p className="text-gray-600 mb-4">No profile data found.</p>
-      <Link to="/">
-        <Button
-          type="submit"
-          className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition-colors duration-200"
-        >
-          Create Profile
-        </Button>
-      </Link>
+  <Card className="card--max-width-2xl card--borderless">
+    <CardContent className="no-profile">
+      <div className="no-profile__icon">
+        <p className="no-profile__title">No Profile Data Found</p>
+      </div>
+      <p className="no-profile__description">No profile data found.</p>
+      <div className="no-profile__action">
+        <Link to="/">
+          <Button
+            type="submit"
+            className="btn btn--primary"
+          >
+            <span>Create Profile</span>
+          </Button>
+        </Link>
+      </div>
     </CardContent>
   </Card>
 );

@@ -1,4 +1,4 @@
-import { Label } from "../../../components/ui/label";
+import { Label } from "../../../components/carbon-ui";
 import ImageUpload from "../../../components/common/ImageUpload";
 
 interface AvatarUploadSectionProps {
@@ -12,8 +12,8 @@ const AvatarUploadSection = ({
   onAvatarChange,
   error,
 }: AvatarUploadSectionProps) => (
-  <div className="space-y-2">
-    <Label>Profile Photo (Optional)</Label>
+  <div className="avatar-upload-section">
+    <Label className="avatar-upload-section__label">Profile Photo (Optional)</Label>
     <ImageUpload
       onImageChange={onAvatarChange}
       currentImage={avatarPreview}

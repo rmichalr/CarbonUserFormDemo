@@ -1,0 +1,42 @@
+// ========================================
+// Main SCSS File
+// Import order matters!
+// ========================================
+
+// 1. Carbon Design System
+@use '@carbon/styles/scss/config' with (
+  $prefix: 'cds',
+  $font-path: false
+);
+@use '@carbon/styles';
+
+// 2. Abstracts (variables, functions, mixins)
+@use 'abstracts/variables';
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
+
+// 3. Base styles
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/global';
+
+// 4. Layout components
+@use 'components/layout';
+@use 'components/header';
+@use 'components/footer';
+@use 'components/logo';
+@use 'components/navigation';
+
+// 5. UI components
+@use 'components/card';
+@use 'components/button';
+@use 'components/avatar';
+@use 'components/forms';
+
+// 6. Page components
+@use 'components/profile-form';
+@use 'components/profile-view';
+
+// 7. Utilities (last)
+@use 'utilities/utilities';
+

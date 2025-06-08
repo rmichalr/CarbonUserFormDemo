@@ -1,0 +1,101 @@
+// ========================================
+// Profile Form Component
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.profile-form {
+  &__form {
+    @include flex(column);
+    gap: spacing(6);
+  }
+
+  &__section {
+    @include flex(column);
+    gap: spacing(2);
+    
+    &:not(:last-child) {
+      margin-bottom: spacing(4);
+    }
+  }
+
+  &__section-title {
+    font-weight: map-get($font-weights, bold);
+    font-size: font-size(sm);
+    color: color(gray-700);
+  }
+
+  &__fields-row {
+    @include grid(1, spacing(4));
+    
+    @include breakpoint('md') {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__actions {
+    @include flex(row, center, space-between);
+    gap: spacing(3);
+    padding-top: spacing(6);
+    border-top: 1px solid color(gray-200);
+    
+    @include breakpoint('sm') {
+      justify-content: flex-start;
+    }
+  }
+
+  &__submit-error {
+    padding: spacing(4);
+    font-size: font-size(sm);
+    color: color(red-800);
+    background-color: color(red-100);
+    border: 1px solid color(red-200);
+    border-radius: map-get($border-radius, md);
+  }
+
+  &__debug-info {
+    padding: spacing(3);
+    background-color: color(gray-100);
+    border-radius: map-get($border-radius, md);
+    font-size: font-size(xs);
+    color: color(gray-600);
+    margin-top: spacing(4);
+  }
+}
+
+// Avatar upload section
+.avatar-upload-section {
+  @include flex(column);
+  gap: spacing(2);
+  
+  &__label {
+    font-weight: map-get($font-weights, bold);
+    font-size: font-size(sm);
+    color: color(gray-700);
+  }
+}
+
+// Form field sections
+.form-section {
+  &__name-fields {
+    @include grid(1, spacing(4));
+    
+    @include breakpoint('md') {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  &__contact-info {
+    @include grid(1, spacing(4));
+    
+    @include breakpoint('md') {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  &__about {
+    @include flex(column);
+    gap: spacing(2);
+  }
+}

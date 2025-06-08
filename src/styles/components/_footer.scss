@@ -1,0 +1,36 @@
+// ========================================
+// Footer Component
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.footer {
+  background-color: color(gray-50);
+  border-top: 1px solid color(gray-200);
+  margin-top: auto;
+
+  &__container {
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-top: spacing(8);
+    padding-bottom: spacing(8);
+    text-align: center;
+    color: color(gray-600);
+  }
+
+  &__content {
+    font-size: font-size(sm);
+    line-height: map-get($line-heights, relaxed);
+    
+    &:not(:last-child) {
+      margin-bottom: spacing(4);
+    }
+  }
+
+  &__copyright {
+    margin-top: spacing(4);
+    font-size: font-size(xs);
+    color: color(gray-500);
+  }
+}

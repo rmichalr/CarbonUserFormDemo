@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Layout from "./components/layout/Layout";
-import "./App.css";
 import { UserDataProvider } from "./contexts/UserDataContext";
 import { SessionProvider } from "./contexts/SessionContext";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";

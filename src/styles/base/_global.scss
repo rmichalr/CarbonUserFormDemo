@@ -1,0 +1,86 @@
+// ========================================
+// Global Styles
+// ========================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// Root element
+#root {
+  min-height: 100vh;
+}
+
+// Container utilities
+.container {
+  @include container;
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(spacing(2));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+// Loading states
+.loading {
+  @include flex-center;
+  padding: spacing(8);
+  color: color(gray-500);
+}
+
+// Error states
+.error {
+  color: color(red-600);
+  background-color: color(red-100);
+  padding: spacing(3);
+  border-radius: map-get($border-radius, md);
+  border: 1px solid color(red-200);
+}
+
+// Success states
+.success {
+  color: color(green-700);
+  background-color: color(green-100);
+  padding: spacing(3);
+  border-radius: map-get($border-radius, md);
+  border: 1px solid color(green-200);
+}
+
+// Form error styling
+.form-field-error {
+  color: color(red-600);
+  font-size: font-size(sm);
+  margin-top: spacing(1);
+}
+
+// Utility classes for screen readers
+.sr-only {
+  @include visually-hidden;
+}
+
+// Skip to content link
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: spacing(4);
+  background: color(blue-600);
+  color: color(white);
+  padding: spacing(2) spacing(4);
+  border-radius: map-get($border-radius, md);
+  text-decoration: none;
+  z-index: z-index(50);
+  
+  &:focus {
+    top: spacing(4);
+  }
+}

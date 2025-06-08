@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "../../../components/ui/avatar";
+} from "../../../components/carbon-ui";
 
 type ProfileHeaderProps = {
   profileData: {
@@ -18,18 +18,19 @@ function getInitials(firstName: string, lastName: string) {
 
 export function ProfileHeader({ profileData }: ProfileHeaderProps) {
   return (
-    <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-      <Avatar className="w-24 h-24">
-        <AvatarImage
-          src={profileData.avatar || undefined}
-          alt="Profile"
-        />
-        <AvatarFallback className="text-lg border shadow-sm font-bold">
-          {getInitials(profileData.firstName, profileData.lastName)}
-        </AvatarFallback>
-      </Avatar>
-      <div className="text-center sm:text-left">
-        <h2 className="text-2xl font-bold text-gray-900">
+    <div className="profile-view__header">
+      <div className="profile-view__avatar-section">
+        <Avatar className="avatar avatar--2xl">
+          <AvatarImage src={profileData.avatar || undefined} alt="Profile" />
+          {!profileData.avatar && (
+            <AvatarFallback className="avatar__fallback">
+              {getInitials(profileData.firstName, profileData.lastName)}
+            </AvatarFallback>
+          )}
+        </Avatar>
+      </div>
+      <div className="profile-view__info-section">
+        <h2 className="profile-view__name">
           {profileData.firstName} {profileData.lastName}
         </h2>
       </div>
